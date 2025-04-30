@@ -5,7 +5,6 @@ import Search from './pages/Search';
 import EditProfile from './pages/EditProfile';
 import Authentication from './pages/AuthenticationCard';
 import ProtectedRoute from './pages/ProtectedRoute';
-import { WebApp } from '@telegram-apps/sdk';
 
 function App() {
   const [user, setUser] = useState(null);
