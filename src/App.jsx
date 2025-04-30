@@ -10,7 +10,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   async function fetchUser() {
-    if (WebApp?.initDataUnsafe?.user) {
+    if (WebApp.initDataUnsafe.user) {
       setUser(WebApp.initDataUnsafe.user);
     } else {
       console.warn('Пользователь не найден в Telegram WebApp');
@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   return (
-    <h1>{user.username}</h1>
+    <h1>{user.id}</h1>
     /*
     <Router>
       <Routes>
