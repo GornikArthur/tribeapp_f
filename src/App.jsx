@@ -22,7 +22,13 @@ function App() {
   }, []);
 
   return (
-    <h1>{user.id}</h1>
+    <>
+    {user ? (
+      <h1>{user.id}</h1>
+    ) : (
+      <h1>Загрузка пользователя...</h1>
+    )}
+  </>
     /*
     <Router>
       <Routes>
