@@ -5,28 +5,16 @@ import Search from './pages/Search';
 import EditProfile from './pages/EditProfile';
 import Authentication from './pages/AuthenticationCard';
 import ProtectedRoute from './pages/ProtectedRoute';
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
+import { WebApp } from '@telegram-apps/sdk';
 
 function App() {
   const [user, setUser] = useState(null);
 
   async function fetchUser() {
-    try {
-      const { initDataRaw } = retrieveLaunchParams();
-      console.log("Telegram user:", initDataRaw);
-      if (!tg_user) {
-        console.error("Telegram user info not available");
-        return;
-      }
-      console.error(username);
-      
-      /*const res = await fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/authentication/${tg_user.id}`);
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data);
-      }*/
-    } catch (error) {
-      console.error('Ошибка при получении пользователя:', error);
+    if (WebApp?.initDataUnsafe?.user) {
+      setUser(WebApp.initDataUnsafe.user);
+    } else {
+      console.warn('Пользователь не найден в Telegram WebApp');
     }
   }
 
@@ -35,6 +23,7 @@ function App() {
   }, []);
 
   return (
+    <h1>{user.username}</h1>
     /*
     <Router>
       <Routes>
@@ -59,7 +48,6 @@ function App() {
         } />
       </Routes>
     </Router> */
-    <></>
   );
 }
 
