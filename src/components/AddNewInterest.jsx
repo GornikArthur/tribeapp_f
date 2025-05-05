@@ -11,7 +11,7 @@ function AddNewInterest({ onSave, onCancel, inputTitle, inputDescription }) {
         };
     
         if (!Title.trim()) return; // не продолжаем, если пустой
-        const username = window.Telegram.WebApp.initDataUnsafe?.user?.username;
+        const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
         fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/edit_interest/${username}`, {
             method: "POST",
             headers: {

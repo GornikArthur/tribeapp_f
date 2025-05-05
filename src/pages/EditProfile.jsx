@@ -17,7 +17,7 @@ function EditProfile({fetchAppUser}) {
     const [User, setUser] = useState();
 
     const fetchUser = () => {
-        const username = window.Telegram.WebApp.initDataUnsafe?.user?.username;
+        const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
         fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/edit/${username}`)
             .then((res) => res.json())
             .then((data) => setUser(data));

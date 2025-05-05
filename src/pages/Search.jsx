@@ -26,7 +26,7 @@ function Search() {
     };
 
     const fetchLike = () => {
-        const username = window.Telegram.WebApp.initDataUnsafe?.user?.username;
+        const username = "arturgornik";
         fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/like_user/${username}`, {
             method: "POST",
             headers: {

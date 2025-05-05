@@ -11,8 +11,8 @@ function Likes(){
     const [LikesUser, setLikesUser] = useState(null);
 
     useEffect(() => {
-        const username = window.Telegram.WebApp.initDataUnsafe?.user?.username;
-        fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/likes${username}`)
+        const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
+        fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/likes/${username}`)
           .then((res) => res.json())
           .then((data) => setUsers(data)); // если Users нет — ставим []
     }, []);

@@ -8,7 +8,7 @@ function Authentication({fetchAppUser}) {
     const navigate = useNavigate(); // <-- Перенесли сюда, НАВЕРХ
 
     const fetchUser = () => {
-        const username = window.Telegram.WebApp.initDataUnsafe?.user?.username;
+        const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
         fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/authentication/${username}`)
             .then((res) => res.json())
             .then((data) => setUser(data));
@@ -25,7 +25,7 @@ function Authentication({fetchAppUser}) {
     const handleSaveUserData = (updatedUser) => {
         setUser(updatedUser); 
         fetchAppUser();
-        navigate("/edit_user", { replace: true }); // <-- Теперь здесь всё ок
+        navigate("/edit", { replace: true }); // <-- Теперь здесь всё ок
     };
 
     return (

@@ -8,12 +8,19 @@ import ProtectedRoute from './pages/ProtectedRoute';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   async function fetchUser() {
-    if (WebApp.initDataUnsafe.user) {
-      setUser(WebApp.initDataUnsafe.user);
-    } else {
-      console.warn('Пользователь не найден в Telegram WebApp');
+    try {
+      const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
+      const res = await fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/authentication/${username}`);
+      if (res.ok) {
+        const data = await res.json();
+        setUser(data);
+        setIsAuthenticated(data.Name !== 'New User');
+      }
+    } catch (error) {
+      console.error('Ошибка при получении пользователя:', error);
     }
   }
 
@@ -22,19 +29,11 @@ function App() {
   }, []);
 
   return (
-    <>
-    {user ? (
-      <h1>{user.id}</h1>
-    ) : (
-      <h1>Загрузка пользователя...</h1>
-    )}
-  </>
-    /*
     <Router>
       <Routes>
-      <Route path="/" element={user ? <Navigate to="/search" replace /> : <Navigate to="/authentication" replace />} />
+      <Route path="/" element={isAuthenticated ? <Navigate to="/search" replace /> : <Navigate to="/authentication" replace />} />
 
-      <Route path="/authentication" element={user ? <Navigate to="/search" replace /> : <Authentication fetchAppUser={fetchUser} />} />
+      <Route path="/authentication" element={isAuthenticated ? <Navigate to="/search" replace /> : <Authentication fetchAppUser={fetchUser} />} />
         
         <Route path="/edit" element={
           <ProtectedRoute user={user}>
@@ -52,7 +51,7 @@ function App() {
           </ProtectedRoute>
         } />
       </Routes>
-    </Router> */
+    </Router>
   );
 }
 
