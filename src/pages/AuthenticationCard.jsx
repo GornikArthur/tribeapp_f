@@ -3,7 +3,7 @@ import './edit_prifile_style.css';
 import ChangeProfileData from '../components/ChangeProfileData';
 import { useNavigate } from "react-router-dom";
 
-function Authentication({fetchAppUser}) {
+function Authentication({fetchAppUser, setIsAuthenticated}) {
     const [User, setUser] = useState();
     const navigate = useNavigate(); // <-- Перенесли сюда, НАВЕРХ
 
@@ -24,6 +24,7 @@ function Authentication({fetchAppUser}) {
 
     const handleSaveUserData = (updatedUser) => {
         setUser(updatedUser); 
+        setIsAuthenticated(true);
         fetchAppUser();
         navigate("/edit", { replace: true }); // <-- Теперь здесь всё ок
     };

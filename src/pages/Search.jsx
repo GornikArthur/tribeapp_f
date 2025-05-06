@@ -11,7 +11,8 @@ function Search() {
 
     const fetchUser = async (lastUserId) => {
         try {
-            const res = await fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/search/${lastUserId}`);
+            const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
+            const res = await fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/search/${lastUserId}/${username}`);
             if (!res.ok) throw new Error("User not found");
 
             const data = await res.json();
@@ -26,7 +27,7 @@ function Search() {
     };
 
     const fetchLike = () => {
-        const username = "arturgornik";
+        const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
         fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/like_user/${username}`, {
             method: "POST",
             headers: {

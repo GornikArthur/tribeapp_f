@@ -33,7 +33,7 @@ function App() {
       <Routes>
       <Route path="/" element={isAuthenticated ? <Navigate to="/search" replace /> : <Navigate to="/authentication" replace />} />
 
-      <Route path="/authentication" element={isAuthenticated ? <Navigate to="/search" replace /> : <Authentication fetchAppUser={fetchUser} />} />
+      <Route path="/authentication" element={isAuthenticated ? <Navigate to="/search" replace /> : <Authentication fetchAppUser={fetchUser} setIsAuthenticated={setIsAuthenticated} />} />
         
         <Route path="/edit" element={
           <ProtectedRoute user={user}>

@@ -14,7 +14,10 @@ function Likes(){
         const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
         fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/likes/${username}`)
           .then((res) => res.json())
-          .then((data) => setUsers(data)); // если Users нет — ставим []
+          .then((data) => {
+            setUsers(data);
+            setShowUserProfile(false);
+        });
     }, []);
 
     const fetchLikesUser = async (user_id) => {
