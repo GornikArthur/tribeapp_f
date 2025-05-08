@@ -17,7 +17,6 @@ function App() {
       if (res.ok) {
         const data = await res.json();
         setUser(data);
-        setIsAuthenticated(data.Name !== 'New User');
       }
     } catch (error) {
       console.error('Ошибка при получении пользователя:', error);

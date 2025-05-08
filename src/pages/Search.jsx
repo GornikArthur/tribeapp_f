@@ -53,16 +53,14 @@ function Search() {
         fetchLike();
         handleNext();
     };
-
-    if (!User) {
-        return <div>Loading or no User found...</div>;
-    }
-
     return (
         <div className="container">
-            <ContactCard User={User}  />
-            <InterestsInfo Interests={User.Interests} isMain={false} />
-            <LikeDislike handleLike={handleLike} handleDisLike={handleNext} />
+            {!User && (<div>Loading or no User found...</div>)}
+            {User && ( <>
+                <ContactCard User={User}  />
+                <InterestsInfo Interests={User.Interests} isMain={false} />
+                <LikeDislike handleLike={handleLike} handleDisLike={handleNext} />
+                </>) }
             <BottomNav />
         </div>
     );

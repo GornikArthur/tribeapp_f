@@ -49,7 +49,10 @@ function Likes(){
                 <>
                     <ContactCard User={LikesUser} displayTG={true}/>
                     <InterestsInfo Interests={LikesUser?.Interests} isMain={false} />
-                    <BottomNav />                   
+                    <BottomNav onReset={() => {
+                        setShowUserProfile(false);
+                    }} />
+                  
                 </>
                 )}
         </div>
