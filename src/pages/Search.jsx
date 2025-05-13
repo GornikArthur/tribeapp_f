@@ -26,20 +26,23 @@ function Search() {
         }
     };
 
-    const fetchLike = () => {
+    const fetchLike = async () => {
         const username = window.Telegram.WebApp.initDataUnsafe.user?.username;
-        fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/like_user/${username}`, {
+        const response = await fetch(`https://miniature-space-adventure-xp4j79wp9grh674w-8000.app.github.dev/like_user/${username}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(User)
-        })
-        .then(response => {
-            if (!response.ok) throw new Error("Failed to save like");
-            return response.json();
-        })
+        });
+    
+        if (!response.ok) {
+            throw new Error("Failed to save like");
+        }
+    
+        return await response.json();
     };
+    
 
     useEffect(() => {
         fetchUser(currentUserId); // вызываем только при монтировании
@@ -49,8 +52,8 @@ function Search() {
         fetchUser(currentUserId); // ищем следующего по текущему ID
     };
 
-    const handleLike = () => {
-        fetchLike();
+    const handleLike = async () => {
+        await fetchLike();
         handleNext();
     };
     return (
